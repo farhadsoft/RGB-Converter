@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace RgbConverter
 {
@@ -13,7 +14,22 @@ namespace RgbConverter
         /// <returns>Returns hexadecimal representation source RGB decimal values.</returns>
         public static string GetHexRepresentation(int red, int green, int blue)
         {
-            throw new NotImplementedException("You need to implement this function.");
+            if (red < 0 || red > 255)
+            {
+                red = (red < 0) ? 0 : 255;
+            }
+
+            if (green < 0 || green > 255)
+            {
+                green = (green < 0) ? 0 : 255;
+            }
+
+            if (blue < 0 || blue > 255)
+            {
+                blue = (blue < 0) ? 0 : 255;
+            }
+
+            return ColorTranslator.ToHtml(Color.FromArgb(red: red, green: green, blue: blue))[1..];
         }
     }
 }
